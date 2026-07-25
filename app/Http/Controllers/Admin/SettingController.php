@@ -22,7 +22,7 @@ class SettingController extends Controller
         ]);
 
         if ($request->hasFile('hero_image')) {
-            Setting::set('hero_image', $request->file('hero_image')->store('site', 'public'));
+            Setting::set('hero_image', $request->file('hero_image')->store('site', 'cloudinary'));
         }
 
         foreach ($request->except(['_token', '_method', 'hero_image']) as $key => $value) {

@@ -29,7 +29,7 @@
 @section('content')
 {{-- ============ HERO ============ --}}
 <section class="relative text-white overflow-hidden"
-    style="@if($heroImage) background-image: linear-gradient(180deg, rgba(6,24,41,.72), rgba(6,24,41,.93)), url('{{ asset('storage/'.$heroImage) }}'); background-size: cover; background-position: center; @else background: linear-gradient(135deg, #0B2545 0%, #13355F 60%, #0B2545 100%); @endif">
+    style="@if($heroImage) background-image: linear-gradient(180deg, rgba(6,24,41,.72), rgba(6,24,41,.93)), url('{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($heroImage) }}'); background-size: cover; background-position: center; @else background: linear-gradient(135deg, #0B2545 0%, #13355F 60%, #0B2545 100%); @endif"
     <div class="absolute inset-0 overflow-hidden" data-parallax="0.12">
         <div class="hero-orb w-72 h-72 bg-gold top-10 -left-10 float-slow"></div>
         <div class="hero-orb w-96 h-96 bg-navy-light top-1/3 -right-20 float-slow" style="animation-delay:1.5s"></div>
