@@ -14,15 +14,20 @@ use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
-    public function home()
+   public function home()
     {
+        $heroImage = Setting::get('hero_image');
+        if ($heroImage && !\Illuminate\Support\Facades\Storage::disk('cloudinary')->exists($heroImage)) {
+            $heroImage = null;
+        }
+
         return view('pages.home', [
             'stats'      => ImpactStat::orderBy('order')->get(),
             'pillars'    => Pillar::where('published', true)->orderBy('order')->get(),
             'flagship'   => Program::where('is_flagship', true)->where('published', true)->orderBy('order')->first(),
             'news'       => NewsPost::published()->latest('published_at')->take(3)->get(),
             'partners'   => Partner::where('published', true)->orderBy('order')->get(),
-            'heroImage'  => Setting::get('hero_image'),
+            'heroImage'  => $heroImage,
         ]);
     }
 

@@ -10,9 +10,15 @@ class SettingController extends Controller
     public function edit()
     {
         $keys = ['contact_email', 'contact_phone', 'nairobi_hq_address', 'moyale_office_address', 'facebook_url', 'twitter_url', 'linkedin_url', 'instagram_url', 'meta_description', 'google_analytics_id'];
-        $settings = collect($keys)->mapWithKeys(fn ($k) => [$k => Setting::get($k)]);
-        $heroImage = Setting::get('hero_image');
-        return view('admin.settings.edit', compact('settings', 'heroImage'));
+    $settings = collect($keys)->mapWithKeys(fn ($k) => [$k => Setting::get($k)]);
+    $heroImage = Setting::get('hero_image');
+
+    if ($heroImage && !\Illuminate\Support\Facades\Storage::disk('cloudinary')->exists($heroImage)) {
+        Setting::set('hero_image', null);
+        $heroImage = null;
+    }
+
+    return view('admin.settings.edit', compact('settings', 'heroImage'));
     }
 
     public function update(Request $request)
