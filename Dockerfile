@@ -17,4 +17,4 @@ RUN mkdir -p storage/framework/sessions storage/framework/views storage/framewor
 RUN composer install --optimize-autoloader --no-dev --no-interaction
 
 EXPOSE 10000
-CMD php artisan migrate --force && php artisan config:cache && php artisan serve --host 0.0.0.0 --port $PORT
+CMD php artisan migrate --force && php artisan db:seed --force && php artisan config:cache && php artisan serve --host 0.0.0.0 --port $PORT
