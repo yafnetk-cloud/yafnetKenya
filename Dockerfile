@@ -2,8 +2,9 @@ FROM php:8.2-fpm
 
 # Install system deps + PHP extensions
 RUN apt-get update && apt-get install -y \
-    libpq-dev libzip-dev unzip git nginx \
-    && docker-php-ext-install pdo pdo_pgsql zip
+    libpq-dev libzip-dev libpng-dev libjpeg-dev libfreetype6-dev unzip git nginx \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install pdo pdo_pgsql zip gd fileinfo
 
 # PHP upload/runtime settings
 RUN echo "upload_max_filesize=20M" > /usr/local/etc/php/conf.d/uploads.ini \
