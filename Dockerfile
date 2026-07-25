@@ -18,6 +18,7 @@ WORKDIR /app
 COPY . .
 
 RUN mkdir -p storage/framework/sessions storage/framework/views storage/framework/cache storage/framework/testing storage/logs bootstrap/cache \
+    && chown -R www-data:www-data storage bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache
 
 RUN composer install --optimize-autoloader --no-dev --no-interaction
