@@ -4,7 +4,10 @@ FROM php:8.2-cli
 RUN apt-get update && apt-get install -y \
     libpq-dev libzip-dev unzip git \
     && docker-php-ext-install pdo pdo_pgsql zip
-
+RUN echo "upload_max_filesize=20M" > /usr/local/etc/php/conf.d/uploads.ini \
+    && echo "post_max_size=25M" >> /usr/local/etc/php/conf.d/uploads.ini \
+    && echo "memory_limit=256M" >> /usr/local/etc/php/conf.d/uploads.ini \
+    && echo "max_execution_time=120" >> /usr/local/etc/php/conf.d/uploads.ini
 # Install Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
