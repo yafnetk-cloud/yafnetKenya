@@ -13,7 +13,7 @@ class PartnerController extends Controller
     public function store(Request $request)
     {
         $data = $this->validated($request);
-        if ($request->hasFile('logo')) $data['logo_path'] = $request->file('logo')->store('partners', 'public');
+        if ($request->hasFile('logo')) $data['logo_path'] = $request->file('logo')->store('partners', 'cloudinary');
         Partner::create($data);
         return redirect()->route('admin.partners.index')->with('success', 'Partner added.');
     }
@@ -24,7 +24,7 @@ class PartnerController extends Controller
 {
     \Log::info('PARTNER UPDATE — has file?', ['hasFile' => $request->hasFile('logo')]);
     $data = $this->validated($request);
-    if ($request->hasFile('logo')) $data['logo_path'] = $request->file('logo')->store('partners', 'public');
+    if ($request->hasFile('logo')) $data['logo_path'] = $request->file('logo')->store('partners', 'cloudinary');
     \Log::info('PARTNER UPDATE — data about to save', $data);
     $partner->update($data);
     \Log::info('PARTNER UPDATE — after save', ['logo_path_in_db' => $partner->fresh()->logo_path]);
@@ -44,3 +44,4 @@ class PartnerController extends Controller
         ]);
     }
 }
+

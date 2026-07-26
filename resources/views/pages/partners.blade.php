@@ -14,7 +14,7 @@
                     <a href="{{ $partner->website_url ?? '#' }}" target="_blank" rel="noopener" class="reveal w-44 bg-white border border-navy/10 rounded-xl flex flex-col items-center justify-center px-4 py-4 card-hover overflow-hidden">
                         <div class="h-14 flex items-center justify-center">
                             @if($partner->logo_path)
-                                <img src="{{ asset('storage/'.$partner->logo_path) }}" alt="{{ $partner->name }}" class="max-h-14 max-w-full object-contain">
+                                <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($partner->logo_path) }}" alt="{{ $partner->name }}" class="max-h-14 max-w-full object-contain">
                             @else
                                 <div class="h-14 w-14 rounded-full bg-navy/5 flex items-center justify-center text-navy/30 text-xs">No logo</div>
                             @endif
@@ -29,3 +29,5 @@
     @endforelse
 </section>
 @endsection
+
+

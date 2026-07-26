@@ -25,7 +25,7 @@ class NewsPostController extends Controller
         $data['slug'] = $this->uniqueSlug($request->title);
         $data['author_id'] = $request->user()->id;
         if ($request->hasFile('featured_image')) {
-            $data['featured_image'] = $request->file('featured_image')->store('news', 'public');
+            $data['featured_image'] = $request->file('featured_image')->store('news', 'cloudinary');
         }
         $post = NewsPost::create($data);
         ActivityLog::create(['user_id' => $request->user()->id, 'action' => 'created news post', 'subject_type' => NewsPost::class, 'subject_id' => $post->id]);
@@ -45,7 +45,7 @@ class NewsPostController extends Controller
             $data['slug'] = $this->uniqueSlug($request->title, $post->id);
         }
         if ($request->hasFile('featured_image')) {
-            $data['featured_image'] = $request->file('featured_image')->store('news', 'public');
+            $data['featured_image'] = $request->file('featured_image')->store('news', 'cloudinary');
         }
         $post->update($data);
         ActivityLog::create(['user_id' => $request->user()->id, 'action' => 'updated news post', 'subject_type' => NewsPost::class, 'subject_id' => $post->id]);

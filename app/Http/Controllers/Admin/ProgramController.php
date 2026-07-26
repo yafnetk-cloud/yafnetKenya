@@ -15,7 +15,7 @@ class ProgramController extends Controller
     {
         $data = $this->validated($request);
         $data['slug'] = Str::slug($request->title);
-        if ($request->hasFile('image')) $data['image_path'] = $request->file('image')->store('programs', 'public');
+        if ($request->hasFile('image')) $data['image_path'] = $request->file('image')->store('programs', 'cloudinary');
         Program::create($data);
         return redirect()->route('admin.programs.index')->with('success', 'Program created.');
     }
@@ -25,7 +25,7 @@ class ProgramController extends Controller
     public function update(Request $request, Program $program)
     {
         $data = $this->validated($request);
-        if ($request->hasFile('image')) $data['image_path'] = $request->file('image')->store('programs', 'public');
+        if ($request->hasFile('image')) $data['image_path'] = $request->file('image')->store('programs', 'cloudinary');
         $program->update($data);
         return redirect()->route('admin.programs.index')->with('success', 'Program updated.');
     }
@@ -45,3 +45,4 @@ class ProgramController extends Controller
         ]);
     }
 }
+

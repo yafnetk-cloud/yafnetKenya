@@ -7,7 +7,7 @@
 
     <div class="h-72 md:h-96 rounded-2xl overflow-hidden mb-10 reveal-scale">
         @if($program->image_path)
-            <img src="{{ asset('storage/'.$program->image_path) }}" alt="{{ $program->title }}" class="w-full h-full object-cover">
+            <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($program->image_path) }}" alt="{{ $program->title }}" class="w-full h-full object-cover">
         @else
             <div class="w-full h-full bg-gradient-to-br from-navy/15 to-gold/10 flex items-center justify-center text-navy/30 text-sm">No image uploaded yet</div>
         @endif
@@ -29,3 +29,4 @@
     <div class="prose max-w-none text-navy/80 reveal">{!! $program->body !!}</div>
 </section>
 @endsection
+

@@ -166,7 +166,7 @@
         </div>
         <div class="reveal-right reveal-scale rounded-2xl overflow-hidden border border-white/10 h-64 md:h-80 img-zoom shadow-[0_40px_80px_-30px_rgba(0,0,0,0.5)]">
             @if($flagship->image_path)
-                <img src="{{ asset('storage/'.$flagship->image_path) }}" alt="{{ $flagship->title }}" class="w-full h-full object-cover">
+                <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($flagship->image_path) }}" alt="{{ $flagship->title }}" class="w-full h-full object-cover">
             @else
                 <div class="img-fill w-full h-full bg-gradient-to-br from-white/10 to-white/[.03] backdrop-blur-sm flex items-center justify-center text-white/30 text-xs">No image uploaded yet</div>
             @endif
@@ -191,7 +191,7 @@
             <a href="{{ route('news.show', $post->slug) }}" class="reveal block rounded-2xl overflow-hidden border border-navy/10 card-hover bg-white">
                 <div class="h-44 img-zoom relative">
                     @if($post->featured_image)
-                        <img src="{{ asset('storage/'.$post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
+                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
                     @else
                         <div class="img-fill w-full h-full bg-gradient-to-br from-navy/15 to-gold/10 flex items-center justify-center text-navy/30 text-xs">No image yet</div>
                     @endif
@@ -224,7 +224,7 @@
                 <div class="w-48 flex-shrink-0 flex flex-col items-center justify-center px-6 text-center group">
                     <div class="h-20 w-20 rounded-full bg-white border border-navy/10 shadow-sm flex items-center justify-center overflow-hidden transition-all duration-300 group-hover:shadow-lg group-hover:-translate-y-1">
                         @if($partner->logo_path)
-                            <img src="{{ asset('storage/'.$partner->logo_path) }}" alt="{{ $partner->name }}" class="max-h-14 max-w-[70%] object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
+                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($partner->logo_path) }}" alt="{{ $partner->name }}" class="max-h-14 max-w-[70%] object-contain grayscale group-hover:grayscale-0 transition-all duration-300">
                         @else
                             <div class="h-10 w-10 rounded-full bg-navy/5"></div>
                         @endif
@@ -252,3 +252,5 @@
     </div>
 </section>
 @endsection
+
+

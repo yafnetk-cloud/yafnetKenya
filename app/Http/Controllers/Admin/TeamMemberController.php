@@ -13,7 +13,7 @@ class TeamMemberController extends Controller
     public function store(Request $request)
     {
         $data = $this->validated($request);
-        if ($request->hasFile('photo')) $data['photo_path'] = $request->file('photo')->store('team', 'public');
+        if ($request->hasFile('photo')) $data['photo_path'] = $request->file('photo')->store('team', 'cloudinary');
         TeamMember::create($data);
         return redirect()->route('admin.team.index')->with('success', 'Team member added.');
     }
@@ -23,7 +23,7 @@ class TeamMemberController extends Controller
     public function update(Request $request, TeamMember $member)
     {
         $data = $this->validated($request);
-        if ($request->hasFile('photo')) $data['photo_path'] = $request->file('photo')->store('team', 'public');
+        if ($request->hasFile('photo')) $data['photo_path'] = $request->file('photo')->store('team', 'cloudinary');
         $member->update($data);
         return redirect()->route('admin.team.index')->with('success', 'Team member updated.');
     }
@@ -43,3 +43,4 @@ class TeamMemberController extends Controller
         ]);
     }
 }
+

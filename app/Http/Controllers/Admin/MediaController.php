@@ -12,7 +12,7 @@ class MediaController extends Controller
     public function store(Request $request)
     {
         $request->validate(['file' => 'required|file|max:10240', 'alt_text' => 'nullable|string']);
-        $path = $request->file('file')->store('media', 'public');
+        $path = $request->file('file')->store('media', 'cloudinary');
         MediaItem::create([
             'title' => $request->file('file')->getClientOriginalName(),
             'file_path' => $path,
@@ -24,3 +24,4 @@ class MediaController extends Controller
 
     public function destroy(MediaItem $item) { $item->delete(); return back()->with('success', 'File removed.'); }
 }
+
