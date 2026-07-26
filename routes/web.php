@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\MediaController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DonationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/about', [PageController::class, 'about'])->name('about');
+Route::post('/donate', [DonationController::class, 'initiate'])
+    ->name('donate.initiate');
 
+Route::post('/palpluss/callback', [DonationController::class, 'callback'])
+    ->name('palpluss.callback');
 Route::get('/programs', [PageController::class, 'programsIndex'])->name('programs.index');
 Route::get('/programs/{program:slug}', [PageController::class, 'programShow'])->name('programs.show');
 Route::get('/flagship-programs', [PageController::class, 'flagshipIndex'])->name('flagship.index');

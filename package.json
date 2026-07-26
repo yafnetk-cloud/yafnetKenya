@@ -1,0 +1,29 @@
+{
+  "name": "yafnet-website",
+  "version": "1.0.0",
+  "description": "Official website for the Youth Action Forum for Networking (YAFNET), including a public site (Home, About, Programs, Flagship Programs, Where We Work, News & Stories, Partners, Get Involved, Governance/Leadership, Contact) and a secure `/admin` content management panel with role-based access (Super Admin / Editor).",
+  "main": "tailwind.config.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+  "type": "git",
+  "url": "git+https://github.com/yafnetk-cloud/yafnetKenya.git"
+},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/yafnetk-cloud/yafnetKenya/issues"
+  },
+  "homepage": "https://github.com/yafnetk-cloud/yafnetKenya#readme",
+  "devDependencies": {
+    "autoprefixer": "^10.5.4",
+    "postcss": "^8.5.23",
+    "tailwindcss": "^3.4.19"
+  }
+}
