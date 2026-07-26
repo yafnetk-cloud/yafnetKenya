@@ -12,25 +12,38 @@ class PalPlussService
     {
         try {
 
-            $response = Http::withBasicAuth(
-                config('palpluss.api_key'),
-                ''
-            )->post(
-                config('palpluss.base_url') . '/payments/stk',
-                [
-                    'amount' => (float) $donation->amount,
+            $apiKey = config('palpluss.api_key');
 
-                    'phone' => $donation->phone,
+if (empty($apiKey)) {
 
-                    'accountReference' => 'YAFNET',
+    Log::error('PALPLUSS_API_KEY is missing.');
 
-                    'transactionDesc' => 'Donation',
+    return back()->with(
+        'error',
+        'Payment service is not configured. Please contact the administrator.'
+    );
 
-                    'channelId' => config('palpluss.channel_id'),
+}
 
-                    'callbackUrl' => route('palpluss.callback'),
-                ]
-            );
+$response = Http::withBasicAuth(
+    $apiKey,
+    ''
+)->post(
+    config('palpluss.base_url') . '/payments/stk',
+    [
+        'amount' => (float) $donation->amount,
+
+        'phone' => $donation->phone,
+
+        'accountReference' => 'YAFNET',
+
+        'transactionDesc' => 'Donation',
+
+        'channelId' => config('palpluss.channel_id'),
+
+        'callbackUrl' => route('palpluss.callback'),
+    ]
+);
 
             $result = $response->json();
 
