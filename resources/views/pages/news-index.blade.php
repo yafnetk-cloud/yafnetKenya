@@ -21,7 +21,7 @@
             <a href="{{ route('news.show', $post->slug) }}" class="reveal block rounded-2xl overflow-hidden border border-navy/10 card-hover bg-white">
                 <div class="h-44 img-zoom">
                     @if($post->featured_image)
-                        <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
+                        <img src="{{ cloudinary_image_url($post->featured_image) }}" alt="{{ $post->title }}" class="w-full h-full object-cover">
                     @else
                         <div class="img-fill w-full h-full bg-gradient-to-br from-navy/15 to-gold/10 flex items-center justify-center text-navy/30 text-xs">No image yet</div>
                     @endif
@@ -39,4 +39,5 @@
     <div class="mt-10">{{ $posts->links() }}</div>
 </section>
 @endsection
+
 

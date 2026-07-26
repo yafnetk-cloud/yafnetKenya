@@ -17,3 +17,4 @@
     <button class="text-red-600 text-sm">Delete submission</button>
 </form>
 @endsection
+

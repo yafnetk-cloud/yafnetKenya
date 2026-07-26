@@ -12,3 +12,4 @@
     @empty<div class="px-5 py-6 text-sm text-gray-400">No team members yet.</div>@endforelse
 </div>
 @endsection
+

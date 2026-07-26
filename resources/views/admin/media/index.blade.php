@@ -21,3 +21,4 @@
 </div>
 <div class="mt-6">{{ $items->links() }}</div>
 @endsection
+

@@ -8,7 +8,7 @@
     <div class="pb-6 border-b">
         <label class="block text-sm font-medium mb-2">Homepage Hero Image</label>
         @if($heroImage)
-            <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($heroImage) }}" alt="Current hero image" class="w-full max-w-md h-40 object-cover rounded-lg mb-3 border">
+            <img src="{{ cloudinary_image_url($heroImage) }}" alt="Current hero image" class="w-full max-w-md h-40 object-cover rounded-lg mb-3 border">
             <p class="text-xs text-gray-500 mb-3">Current image shown above. Upload a new file below to replace it.</p>
         @else
             <p class="text-xs text-gray-500 mb-3">No hero image uploaded yet — the homepage will use a gradient background until you add one. Recommended size: at least 1920×1080, landscape photo of youth/community/programs.</p>
@@ -25,4 +25,5 @@
     <button class="bg-[#0B2545] text-white font-semibold px-6 py-2.5 rounded-lg">Save Settings</button>
 </form>
 @endsection
+
 

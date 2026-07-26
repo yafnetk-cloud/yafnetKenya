@@ -17,7 +17,7 @@
                     <a href="{{ route('programs.show', $program->slug) }}" class="reveal block rounded-2xl border border-navy/10 bg-white overflow-hidden card-hover">
                         <div class="h-40 img-zoom">
                             @if($program->image_path)
-                                <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($program->image_path) }}" alt="{{ $program->title }}" class="w-full h-full object-cover">
+                                <img src="{{ cloudinary_image_url($program->image_path) }}" alt="{{ $program->title }}" class="w-full h-full object-cover">
                             @else
                                 <div class="img-fill w-full h-full bg-gradient-to-br from-navy/15 to-gold/10 flex items-center justify-center text-navy/30 text-xs">No image yet</div>
                             @endif
@@ -35,4 +35,5 @@
     @endforelse
 </section>
 @endsection 
+
 

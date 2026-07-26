@@ -39,7 +39,7 @@
                 <div class="reveal group rounded-3xl border border-navy/10 bg-white overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_35px_70px_-30px_rgba(11,37,69,0.4)]">
                     <div class="portrait-card aspect-[4/5] bg-navy/10">
                         @if($m->photo_path)
-                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($m->photo_path) }}" alt="{{ $m->name }}" class="w-full h-full object-cover">
+                            <img src="{{ cloudinary_image_url($m->photo_path) }}" alt="{{ $m->name }}" class="w-full h-full object-cover">
                         @else
                             <div class="w-full h-full flex items-center justify-center text-navy/25 text-sm">No photo uploaded yet</div>
                         @endif
@@ -76,7 +76,7 @@
                 <div class="reveal group rounded-2xl border border-navy/10 bg-white overflow-hidden transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_25px_50px_-25px_rgba(11,37,69,0.4)]">
                     <div class="portrait-card aspect-square bg-navy/10">
                         @if($m->photo_path)
-                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($m->photo_path) }}" alt="{{ $m->name }}" class="w-full h-full object-cover">
+                            <img src="{{ cloudinary_image_url($m->photo_path) }}" alt="{{ $m->name }}" class="w-full h-full object-cover">
                         @else
                             <div class="w-full h-full flex items-center justify-center text-navy/25 text-sm">No photo uploaded yet</div>
                         @endif
@@ -115,7 +115,7 @@
                 <div class="reveal group flex items-center gap-4 bg-white border border-navy/10 rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                     <div class="avatar-ring w-16 h-16 rounded-full overflow-hidden bg-navy/10 shrink-0 ring-2 ring-transparent">
                         @if($m->photo_path)
-                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($m->photo_path) }}" alt="{{ $m->name }}" class="w-full h-full object-cover">
+                            <img src="{{ cloudinary_image_url($m->photo_path) }}" alt="{{ $m->name }}" class="w-full h-full object-cover">
                         @else
                             <div class="w-full h-full flex items-center justify-center text-navy/30 font-heading font-700">{{ Str::of($m->name)->explode(' ')->map(fn($w) => $w[0] ?? '')->join('') }}</div>
                         @endif
@@ -142,7 +142,7 @@
                 <div class="reveal group flex items-center gap-4 bg-white border border-navy/10 rounded-2xl p-5 transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
                     <div class="avatar-ring w-16 h-16 rounded-full overflow-hidden bg-navy/10 shrink-0 ring-2 ring-transparent">
                         @if($m->photo_path)
-                            <img src="{{ \Illuminate\Support\Facades\Storage::disk('cloudinary')->url($m->photo_path) }}" alt="{{ $m->name }}" class="w-full h-full object-cover">
+                            <img src="{{ cloudinary_image_url($m->photo_path) }}" alt="{{ $m->name }}" class="w-full h-full object-cover">
                         @else
                             <div class="w-full h-full flex items-center justify-center text-navy/30 font-heading font-700">{{ Str::of($m->name)->explode(' ')->map(fn($w) => $w[0] ?? '')->join('') }}</div>
                         @endif
@@ -158,4 +158,5 @@
     @endif
 </section>
 @endsection
+
 
